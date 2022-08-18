@@ -489,7 +489,7 @@ console.log(stringMatch.match('love'))
 let pattern = /love/gi 
 console.log(stringMatch.match(pattern))   // ["love", "love", "love"] 
 
-// Let us extract numbers from text using a regular expression. This is not the regular expression section, do not panic! We will cover regular expressions later on. 
+// Let us extract numbers from text using a regular expression. This is not the regular expression section, do not panic! We will cover Regular Expressions (RegEx) later on. 
 
 let txt = 'In 2019, I ran 30 Days of Python. Now, in 2020 I am super exited to start this challenge' 
 let regEx = /\d+/ 

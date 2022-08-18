@@ -168,15 +168,56 @@ console.log(sentence.substr(31, 23)) // because because because (index, num of c
 let loveSentence = 'Love is the best thing in this world. Some found their love and some are still looking for their love.' 
 let loveMatch = /love/gi 
 console.log(loveSentence.match(loveMatch)) // (3) ['Love', 'love', 'love'] 
-// ? Check if correct 
+// or 
+const countLove = (str) => {
+    const re = /love/gmi          // g - global, i - case insensitive, m - multiline 
+
+    return ((str).match(re) || []).length 
+} 
+console.log(countLove('Love is the best thing in this world. Some found their love and some are still looking for their love')) // 3 
 
 // * 2. Use match() to count the number of all because in the following sentence:'You cannot end a sentence with because because because is a conjunction' 
 let matchBecause = /because/g 
 console.log(sentence.match(matchBecause)) // (3) ['because', 'because', 'because'] 
+// or 
+const countBecause = (str) => {
+    const reg = /because/g          // m 
 
-// ! Still need to do question #3 and #4 
+    return (
+        (str).match(reg) || []).length 
+} 
+console.log(countBecause('You cannot end a sentence with because because because is a conjunction')) // 3 
+
 // * 3. Clean the following text and find the most frequent word (hint, use replace and regular expressions). 
 const bigSentence = '%I $am@% a %tea@cher%, &and& I lo%#ve %te@a@ching%;. The@re $is no@th@ing; &as& mo@re rewarding as educa@ting &and& @emp%o@weri@ng peo@ple. ;I found tea@ching m%o@re interesting tha@n any ot#her %jo@bs. %Do@es thi%s mo@tiv#ate yo@u to be a tea@cher!? %Th#is 30#Days&OfJavaScript &is al@so $the $resu@lt of &love& of tea&ching' 
-// ? Check regex 
+////let reg = /\W+/g 
+////let replaceChar = " " 
+////let result = bigSentence.replace(reg, replaceChar) 
+////console.log(result) 
+console.log(bigSentence.replace(/[^a-z0-9 ]/gi, "")) 
+
+let cleanSentence = bigSentence.replace(/[^\w\s]|_/g, "") // remove special characters/punctuation 
+console.log(cleanSentence) // I am a teacher and I love teaching There is nothing as more rewarding as educating and empowering people I found teaching more interesting than any other jobs Does this motivate you to be a teacher This 30DaysOfJavaScript is also the result of love of teaching 
+
+let words = cleanSentence.split(/\s/); // Array of words.  Any whitespace is a delimiter.
+let wordFrequencies = new Map();
+words.forEach(function(word) {
+    if (!wordFrequencies.has(word))
+        wordFrequencies.set(word, 1);
+    else
+        wordFrequencies.set(word, wordFrequencies.get(word)+1);
+});
+// Now wordFrequencies maps each unique word to a frequency count.
+let maxFrequency = Math.max(...wordFrequencies.values()); // Find max frequency of any word.
+let wordsMatchingMaxFrequency = Array.from(wordFrequencies.keys()).filter((word) => {
+    return wordFrequencies.get(word) === maxFrequency;
+});
+console.log(wordsMatchingMaxFrequency) // (2) ['I', 'teaching'] 
 
 // * 4. Calculate the total annual income of the person by extracting the numbers from the following text. 'He earns 5000 euro from salary per month, 10000 euro annual bonus, 15000 euro online courses per month.' 
+let text = 'He earns 5000 euro from salary per month, 10000 euro annual bonus, 15000 euro online courses per month.' 
+let incomes = /\d+/g 
+let allIncomes = text.match(incomes) 
+console.log(allIncomes) // (3) ['5000', '10000', '15000'] 
+let totalAnnualIncome = (+allIncomes[0] * 12) + +allIncomes[1] + (+allIncomes[2] * 12) 
+console.log(totalAnnualIncome) // 250,000 
