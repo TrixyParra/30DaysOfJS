@@ -208,4 +208,14 @@ console.log(`${date}/${month}/${currentYear}`) // 23/7/2022
 
 // ToDo: Exercises - Level 3 
 // * 1. Create a human readable time format using the Date time object. The hour and the minute should be all the time two digits(7 hours should be 07 and 5 minutes should be 05 ) 
-// YYY-MM-DD HH:mm eg. 20120-01-02 07:05 
+// YYYY-MM-DD HH:mm eg. 2012-01-02 07:05 
+const now = new Date() 
+const nowMonth = [now.getMonth() + 1].toString().padStart(2, 0) 
+const nowDate = now.getDate().toString().padStart(2, 0) 
+const nowYear = now.getFullYear() 
+const nowHour = [now.getHours() % 12].toString().padStart(2, 0) 
+const nowMinutes = now.getMinutes().toString().padStart(2, 0) 
+const timeOfDay = now.getHours() > 12 ? 'PM' : 'AM'
+
+console.log(`${nowYear}-${nowMonth}-${nowDate} ${nowHour}:${nowMinutes} ${timeOfDay}`) 
+// 2022-08-24 11:36 PM 
