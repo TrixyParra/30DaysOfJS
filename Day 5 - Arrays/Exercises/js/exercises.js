@@ -105,4 +105,4 @@ indexOfCompanyTwo == -1
 // Company not found 
 
 // * 14. Filter out companies which have more than one 'o' without the filter method. 
-console.log(itCompanies.join(', ').includes('oo')); // true //? print companies 
+console.log(itCompanies.join(', ').includes('oo')); // true //? print companies  
