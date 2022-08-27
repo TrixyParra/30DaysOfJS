@@ -116,7 +116,6 @@ a > b
 // } 
 // You got a B   - sample input: 89 - will change depending on user input number 
 
-
 // * 2. Check if the season is Autumn, Winter, Spring or Summer. If the user input is : 
 // September, October or November, the season is Autumn. 
 // December, January or February, the season is Winter. 
@@ -189,4 +188,20 @@ a > b
 // Enter a month: FEbruary 
 // February has 28 days. 
 
-// todo - finish exercises 
+const daysInMonth = date => 
+    new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(); 
+
+console.log(daysInMonth(new Date(2022, 0))); //  31   - days in January 2022 
+console.log(daysInMonth(new Date(2022, 1))); // 28   - days in February 2022 
+console.log(daysInMonth(new Date(2022, 9))); // 31   - days in October 2022 
+console.log(daysInMonth(new Date(2022, 8))); // 30   - days in September 2022 
+
+// * 2. Write a program which tells the number of days in a month, now consider leap year. 
+const daysInMonthInLeapYears = date => 
+    new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(); 
+
+console.log(daysInMonthInLeapYears(new Date(2024, 1))); // 29   - 29 days in February 2024 
+console.log(daysInMonthInLeapYears(new Date(2025, 1))); // 28   - 28 days in February 2024 
+console.log(daysInMonthInLeapYears(new Date(2026, 1))); // 28   - 28 days in February 2024 
+console.log(daysInMonthInLeapYears(new Date(2027, 1))); // 28   - 28 days in February 2024 
+console.log(daysInMonthInLeapYears(new Date(2028, 1))); // 29   - 29 days in February 2024 
